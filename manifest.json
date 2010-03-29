@@ -1,6 +1,6 @@
 {
 	"name" : "Google Reader Open entry in background tab",
-	"version" : "0.0.3",
+	"version" : "0.0.4",
 	"description": "Open current item in a new back ground tab with the key 'v' for Gooogle Reader.",
 	"content_scripts" :[
 		{
@@ -8,7 +8,9 @@
 				"http://*.google.com/reader/view/*",
 				"https://*.google.com/reader/view/*",
 				"http://*.google.co.jp/reader/view/*",
-				"https://*.google.co.jp/reader/view/*"
+				"https://*.google.co.jp/reader/view/*",
+				"http://*.google.com/reader/play/*",
+				"https://*.google.com/reader/play/*"
 			],
 			"js" :[ "contents.js" ]
 		}
@@ -17,5 +19,4 @@
   "permissions" : [
 		"tabs"
 	]
-
 }

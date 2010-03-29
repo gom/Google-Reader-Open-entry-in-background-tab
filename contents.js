@@ -18,9 +18,22 @@ var mark_as_read = function (node) {
 
 var get_url = function (node) {
 	if(! node) return false;
-	var href_node = (node.getElementsByClassName('card-content')[0]) ? 'entry-title-link' : 'entry-original';
-	return node.getElementsByClassName(href_node)[0].getAttribute('href');
+	return href_node_by_view_mode(node).getAttribute('href');
 }
+
+var href_node_by_view_mode = function (node) {
+	var href_node = '';
+	switch(true) {
+	case (node.getElementsByClassName('card-content')[0] != undefined): // Expand View
+	case (node.getAttribute('class') == 'entry-container'): // Reader Play!
+		href_node = 'entry-title-link';
+		break;
+	default: // List View
+		href_node = 'entry-original';
+	}
+  return node.getElementsByClassName(href_node)[0];
+}
+
 
 if (! gr_star_opener) {
 	var gr_star_opener = function(e) {
