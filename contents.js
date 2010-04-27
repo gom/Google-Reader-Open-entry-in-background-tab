@@ -1,7 +1,12 @@
 var is_press_key = function (e, key) {
-	return (e.target.nodeName.toLowerCase() != 'input'
+	return (! at_input_area(e)
 					&& ! (e.altKey || e.ctrlKey || e.metaKey)
 					&& String.fromCharCode(e.which) == key);
+}
+
+var at_input_area = function (e) {
+  area_name = e.target.nodeName.toLowerCase();
+  return area_name == 'input' || area_name == 'textarea';
 }
 
 var mouse_click_event = function () {
