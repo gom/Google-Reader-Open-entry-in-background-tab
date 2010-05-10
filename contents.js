@@ -1,7 +1,8 @@
-var is_press_key = function (e, key) {
+var is_press_key = function (e, key, with_shift) {
 	return (! at_input_area(e)
-					&& ! (e.altKey || e.ctrlKey || e.metaKey)
-					&& String.fromCharCode(e.which) == key);
+          && ! (e.altKey || e.ctrlKey || e.metaKey)
+          && e.which == key
+          && (with_shift == false || (with_shift == true && e.shiftKey)));
 }
 
 var at_input_area = function (e) {
@@ -42,10 +43,10 @@ var href_node_by_view_mode = function (node) {
 
 if (! gr_star_opener) {
 	var gr_star_opener = function(e) {
-		var background_key = 'V'; // shift + V
+		var background_key = 86; // v
 		var max_tab_open = 5;
 
-		if (! is_press_key(e, background_key)) return true;
+		if (! is_press_key(e, background_key, true)) return true;
 		var entries = document.getElementsByClassName('entry');
 
 		for (var i = 0, len = entries.length, m = 0; i < len && m < max_tab_open; i++) {
@@ -64,12 +65,12 @@ if (! gr_star_opener) {
 		}
 	}
 }
-document.addEventListener("keypress", gr_star_opener, true);
+document.addEventListener("keydown", gr_star_opener, true);
 
 if (! gr_in_bg_event) {
 	var gr_in_bg_event = function(e) {
-		var background_key = 'v';
-		if (! is_press_key(e, background_key)) return true;
+		var background_key = 86; // v
+		if (! is_press_key(e, background_key, false)) return true;
 		var current_entry = document.getElementById('current-entry');
 		var url = get_url(current_entry);
 		if (! url) return true;
@@ -81,4 +82,4 @@ if (! gr_in_bg_event) {
 		e.preventDefault();
 	}
 }
-document.addEventListener("keypress", gr_in_bg_event, true);
+document.addEventListener("keydown", gr_in_bg_event, true);
