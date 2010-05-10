@@ -1,3 +1,10 @@
+var is_google = function (host) {
+  return host.match('.*\.google\..*');
+}
+
+if (! is_google(document.location.host)) { return; }
+
+
 var is_press_key = function (e, key, with_shift) {
 	return (! at_input_area(e)
           && ! (e.altKey || e.ctrlKey || e.metaKey)
