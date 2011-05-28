@@ -1,7 +1,10 @@
 {
 	"name" : "Google Reader Open entry in background tab",
-	"version" : "0.0.8",
+	"version" : "0.0.9",
 	"description": "Open current item in a new back ground tab with the key 'v' for Gooogle Reader.",
+  "icons" :{ "16": "icon16.png",
+             "48": "icon48.png",
+             "128": "icon128.png" },
 	"content_scripts" :[
 		{
 			"matches" :[
